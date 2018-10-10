@@ -1,0 +1,22 @@
+{
+  "name": "webb",
+  "version": "0.0.1",
+  "description": "a toy web browser",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yayoc/webb.git"
+  },
+  "author": "yayoc <hi@yayoc.com> (http://yayoc.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yayoc/webb/issues"
+  },
+  "homepage": "https://github.com/yayoc/webb#readme",
+  "devDependencies": {
+    "typescript": "^3.1.2"
+  }
+}
