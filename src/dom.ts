@@ -1,6 +1,6 @@
 type DOMText = string;
 type NodeType = DOMText | ElementData;
-type AttrMap = { [key: string]: string };
+export type AttrMap = { [key: string]: string };
 
 export class ElementData {
   tagName: string;
@@ -11,7 +11,7 @@ export class ElementData {
   }
 }
 
-class DOMNode {
+export class DOMNode {
   children: DOMNode[];
   nodeType: NodeType;
   constructor(children: DOMNode[], nodeType: NodeType) {
