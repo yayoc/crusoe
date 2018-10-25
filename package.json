@@ -1,5 +1,5 @@
 {
-  "name": "webb",
+  "name": "crusoe",
   "version": "0.0.1",
   "description": "a toy web browser",
   "main": "dist/index.js",
@@ -12,12 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/yayoc/webb.git"
   },
-  "author": "yayoc <hi@yayoc.com> (http://yayoc.com)",
+  "author": "yayoc <n.yayoshi@gmail.com> (http://yayoc.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yayoc/webb/issues"
+    "url": "https://github.com/yayoc/crusoe/issues"
   },
-  "homepage": "https://github.com/yayoc/webb#readme",
+  "homepage": "https://github.com/yayoc/crusoe#readme",
   "devDependencies": {
     "ava": "1.0.0-beta.8",
     "ts-node": "^7.0.1",
