@@ -7,7 +7,7 @@ export class Stylesheet {
   }
 }
 
-class Rule {
+export class Rule {
   selectors: Selector[];
   declarations: Declaration[];
   constructor(selectors: Selector[], declarations: Declaration[]) {
@@ -16,11 +16,11 @@ class Rule {
   }
 }
 
-type Selector = SimpleSelector;
+export type Selector = SimpleSelector;
 
-type Specificity = [number, number, number];
+export type Specificity = [number, number, number];
 
-class SimpleSelector {
+export class SimpleSelector {
   tagName: string;
   id: string;
   class: string[];
@@ -48,9 +48,9 @@ class Declaration {
   }
 }
 
-type Value = Keyword | Length | Color;
+export type Value = Keyword | Length | Color;
 
-class Keyword {
+export class Keyword {
   value: string;
   constructor(value: string) {
     this.value = value;
