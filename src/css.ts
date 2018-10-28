@@ -55,18 +55,26 @@ export class Keyword {
   constructor(value: string) {
     this.value = value;
   }
+
+  toPx(): number {
+    return 0;
+  }
 }
 
-class Length {
+export class Length {
   float: number;
   unit: Unit;
   constructor(float: number, unit: Unit) {
     this.float = float;
     this.unit = unit;
   }
+
+  toPx(): number {
+    return this.float;
+  }
 }
 
-enum Unit {
+export enum Unit {
   Px = "px"
 }
 
@@ -80,6 +88,10 @@ class Color {
     this.g = g;
     this.b = b;
     this.a = a;
+  }
+
+  toPx(): number {
+    return 0;
   }
 }
 

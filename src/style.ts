@@ -53,7 +53,7 @@ export class StyleNode {
   }
 }
 
-enum Display {
+export enum Display {
   Inline = "inline",
   Block = "block",
   None = "none"
