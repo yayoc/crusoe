@@ -3,7 +3,7 @@ import { Keyword, Length, Unit, Value } from "./css";
 
 // CSS box model. All sizes are in px
 
-class Rect {
+export class Rect {
   x: number;
   y: number;
   width: number;
@@ -56,7 +56,7 @@ class Dimensions {
 
 // A node in the layout tree.
 
-class LayoutBox {
+export class LayoutBox {
   dimensions: Dimensions;
   boxType: BoxType;
   children: LayoutBox[];
@@ -285,13 +285,13 @@ class LayoutBox {
   }
 }
 
-class BlockNode {
+export class BlockNode {
   node: StyleNode;
   constructor(node: StyleNode) {
     this.node = node;
   }
 }
-class InlineNode {
+export class InlineNode {
   node: StyleNode;
   constructor(node: StyleNode) {
     this.node = node;

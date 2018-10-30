@@ -78,7 +78,7 @@ export enum Unit {
   Px = "px"
 }
 
-class Color {
+export class Color {
   r: number;
   g: number;
   b: number;
