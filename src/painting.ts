@@ -15,7 +15,7 @@ type DisplayCommand = SolidColor;
 type DisplayList = DisplayCommand[];
 
 export function buildDisplayList(layoutRoot: LayoutBox): DisplayList {
-  let list = [];
+  let list: DisplayList = [];
   renderLayoutBox(list, layoutRoot);
   return list;
 }

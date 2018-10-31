@@ -302,7 +302,10 @@ class AnonymousBlock {}
 type BoxType = BlockNode | InlineNode | AnonymousBlock;
 
 // Transform a style tree into a layout tree.
-function layoutTree(node: StyleNode, containingBlock: Dimensions): LayoutBox {
+export function layoutTree(
+  node: StyleNode,
+  containingBlock: Dimensions
+): LayoutBox {
   // The layout algorithm expects the container height to start at 0.
   // TODO: Save the initial containing block height, for calculating percent heights.
   containingBlock.content.height = 0;
