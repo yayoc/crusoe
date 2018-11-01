@@ -25,18 +25,37 @@ export class Rect {
   }
 }
 
-class EdgeSizes {
+export class EdgeSizes {
   left: number;
   right: number;
   top: number;
   bottom: number;
+
+  constructor(left: number, right: number, top: number, bottom: number) {
+    this.left = left;
+    this.right = right;
+    this.top = top;
+    this.bottom = bottom;
+  }
 }
 
-class Dimensions {
+export class Dimensions {
   content: Rect;
   padding: EdgeSizes;
   border: EdgeSizes;
   margin: EdgeSizes;
+
+  constructor(
+    content: Rect,
+    padding: EdgeSizes,
+    border: EdgeSizes,
+    margin: EdgeSizes
+  ) {
+    this.content = content;
+    this.padding = padding;
+    this.border = border;
+    this.margin = margin;
+  }
 
   // The area covered by the content area plus its padding.
   paddingBox(): Rect {
@@ -68,7 +87,13 @@ export class LayoutBox {
   }
 
   static n(boxType: BoxType): LayoutBox {
-    const dimensions = new Dimensions();
+    const defaultEdgeSize = new EdgeSizes(0, 0, 0, 0);
+    const dimensions = new Dimensions(
+      new Rect(0, 0, 0, 0),
+      defaultEdgeSize,
+      defaultEdgeSize,
+      defaultEdgeSize
+    );
     return new LayoutBox(dimensions, boxType, []);
   }
 
@@ -277,7 +302,13 @@ export class LayoutBox {
       // If we've just generated an anonymous block box, keep using it.
       // Otherwise, create a new one.
       if (this.children.length) {
-        const dimensions = new Dimensions();
+        const defaultEdgeSize = new EdgeSizes(0, 0, 0, 0);
+        const dimensions = new Dimensions(
+          new Rect(0, 0, 0, 0),
+          defaultEdgeSize,
+          defaultEdgeSize,
+          defaultEdgeSize
+        );
         this.children.push(new LayoutBox(dimensions, new AnonymousBlock(), []));
       }
       return this.children[this.children.length - 1];
@@ -318,7 +349,13 @@ export function layoutTree(
 function buildLayoutTree(styleNode: StyleNode): LayoutBox {
   // Create the root box.
   let root: LayoutBox;
-  const dimensions = new Dimensions();
+  const defaultEdgeSize = new EdgeSizes(0, 0, 0, 0);
+  const dimensions = new Dimensions(
+    new Rect(0, 0, 0, 0),
+    defaultEdgeSize,
+    defaultEdgeSize,
+    defaultEdgeSize
+  );
   if (styleNode.display() === Display.Block) {
     root = new LayoutBox(dimensions, new BlockNode(styleNode), []);
   } else if (styleNode.display() === Display.Inline) {

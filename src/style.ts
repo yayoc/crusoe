@@ -9,10 +9,12 @@ import {
   Specificity
 } from "./css";
 
+// Map from CSS property names to values.
 type PropertyMap = { [key: string]: Value };
 
+// A node with associated style data.
 export class StyleNode {
-  node: DOMNode;
+  node: DOMNode; // pointer to a DOM node
   specifiedValues: PropertyMap;
   children: StyleNode[];
   constructor(
