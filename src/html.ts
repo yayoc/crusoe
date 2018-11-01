@@ -1,4 +1,5 @@
 import { elem, text, DOMNode, AttrMap } from "./dom";
+import * as assert from "assert";
 
 export function parse(source: string): DOMNode {
   let nodes = new Parser(0, source).parseNodes();
@@ -20,13 +21,13 @@ export class Parser {
   // Parse a sequence of sibling nodes.
   parseNodes(): DOMNode[] {
     let nodes: DOMNode[] = [];
-    do {
+    while (true) {
       this.consumeWhitespace();
       if (this.eof() || this.startsWith("</")) {
         break;
       }
       nodes.push(this.parseNode());
-    } while (true);
+    }
     return nodes;
   }
 
@@ -39,17 +40,19 @@ export class Parser {
 
   parseElement(): DOMNode {
     // Opening tag.
+    assert(this.consumeChar() === "<", "char should be <");
     const tagName = this.parseTagName();
     const attrs = this.parseAttributes();
+    assert(this.consumeChar() === ">", "char should be >");
 
     // Contentes.
     const children = this.parseNodes();
 
     // Closing tag.
-    this.consumeChar(); // <
-    this.consumeChar(); // /
+    assert(this.consumeChar() === "<", "char should be <");
+    assert(this.consumeChar() === "/", "char should be /");
     this.parseTagName(); // tagName
-    this.consumeChar(); // >
+    assert(this.consumeChar() === ">", "char should be >");
 
     return elem(tagName, attrs, children);
   }
@@ -65,7 +68,7 @@ export class Parser {
 
   parseAttr(): [string, string] {
     const name = this.parseTagName();
-    this.consumeChar(); // =
+    assert(this.consumeChar() === "=", "char should be =");
     const value = this.parseAttrValue();
     return [name, value];
   }
@@ -78,14 +81,14 @@ export class Parser {
 
   parseAttributes(): AttrMap {
     let attributes: AttrMap = {};
-    do {
+    while (true) {
       this.consumeWhitespace();
       if (this.nextChar() === ">") {
         break;
       }
       const [name, value] = this.parseAttr();
       attributes[name] = value;
-    } while (true);
+    }
     return attributes;
   }
 
@@ -105,20 +108,20 @@ export class Parser {
   // Consume characters until `test` returns false.
   consumeWhile(test: (str: string) => boolean): string {
     let result: string = "";
-    do {
+    while (!this.eof() && test(this.nextChar())) {
       result += this.consumeChar();
-    } while (!this.eof() && test(this.nextChar()));
+    }
     return result;
   }
 
   // Read the current character without consuming it.
   private nextChar(): string {
-    return this.input[this.pos + 1];
+    return this.input[this.pos];
   }
 
   // Do the next characters start with the given string?
   private startsWith(str: string): boolean {
-    return this.input[this.pos].startsWith(str);
+    return this.input.substring(this.pos, this.input.length).startsWith(str);
   }
 
   // Return true if all input is consumed.
